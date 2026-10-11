@@ -1,165 +1,280 @@
-import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+
+import React from "react";
+import { motion } from "framer-motion";
+import { Gift, Heart, Sparkles } from "lucide-react";
 
 const Regalos = () => {
-  const [mostrarModal, setMostrarModal] = useState(false);
-  const [copiado, setCopiado] = useState(false);
-
-  const copiarCuenta = () => {
-    navigator.clipboard.writeText("1234 5678 9012 3456");
-    setCopiado(true);
-
-    setTimeout(() => {
-      setCopiado(false);
-    }, 2000);
-  };
-
   return (
-    <section className="w-full bg-[#F4E8DD] py-24 px-5 overflow-hidden">
+    <section
+      id="regalos"
+      className="
+        relative isolate w-full
+        overflow-hidden
+        bg-[#F8FAFF]
+        px-5 py-20
+        sm:px-6 sm:py-28
+      "
+    >
+      {/* Decoración superior izquierda */}
+      <div
+        className="
+          pointer-events-none
+          absolute left-0 top-0
+          h-32 w-32
+          border-l-2 border-t-2
+          border-[#D4E6FF]
+          sm:h-44 sm:w-44
+        "
+      />
+
+      {/* Decoración inferior derecha */}
+      <div
+        className="
+          pointer-events-none
+          absolute bottom-0 right-0
+          h-32 w-32
+          border-b-2 border-r-2
+          border-[#D4E6FF]
+          sm:h-44 sm:w-44
+        "
+      />
+
       <motion.div
-        initial={{ opacity: 0, y: 60 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.9 }}
+        initial={{
+          opacity: 0,
+          y: 35,
+        }}
+        whileInView={{
+          opacity: 1,
+          y: 0,
+        }}
+        transition={{
+          duration: 0.85,
+          ease: [0.22, 1, 0.36, 1],
+        }}
         viewport={{ once: true }}
         className="
-          max-w-5xl mx-auto
-          bg-white/70
-          backdrop-blur-xl
-          rounded-tl-[4rem]
-          rounded-br-[4rem]
-          rounded-tr-2xl
-          rounded-bl-2xl
-          border border-[#B88A8A]/30
-          shadow-[0_25px_70px_rgba(74,20,29,.18)]
-          overflow-hidden
+          relative z-10
+          mx-auto max-w-3xl
+          bg-white
+          px-7 py-14
+          text-center
+          shadow-[0_15px_45px_rgba(27,36,71,0.06)]
+          sm:px-14 sm:py-20
         "
       >
-        <div className="px-8 py-16 sm:px-14 text-center">
-          <p className="uppercase tracking-[.35em] text-[#B88A8A] text-sm font-semibold">
-            Con cariño
+        {/* Marco exterior */}
+        <div
+          className="
+            pointer-events-none
+            absolute inset-0
+            border border-[#B7CAE7]
+          "
+        />
+
+        {/* Marco interior */}
+        <div
+          className="
+            pointer-events-none
+            absolute inset-[8px]
+            border border-[#D4E6FF]
+          "
+        />
+
+        {/* Contenido */}
+        <div className="relative z-10">
+
+          {/* Encabezado */}
+          <p
+            className="
+              mb-5
+              text-[10px]
+              font-medium
+              uppercase
+              tracking-[0.32em]
+              text-[#294285]
+              sm:text-xs
+            "
+          >
+            Con mucho cariño
           </p>
 
-          <h2 className="font-playfair text-[#4A141D] text-5xl mt-4">
-            Regalos
+          <h2
+            className="
+              font-['Playfair_Display']
+              text-[clamp(2.4rem,6vw,4rem)]
+              font-normal
+              leading-tight
+              text-[#111111]
+            "
+          >
+            Mesa de Regalos
           </h2>
 
-          <div className="w-24 h-px bg-[#B88A8A] mx-auto mt-6"></div>
-
-          <motion.img
-            whileHover={{ scale: 1.05, rotate: 3 }}
-            transition={{ duration: 0.3 }}
-            src="/regalo1.png"
-            alt="Regalo"
-            className="w-28 mx-auto mt-12"
-          />
-
-          <p className="max-w-2xl mx-auto mt-10 text-[#4A141D] text-xl leading-10 font-playfair">
-            El mejor regalo será compartir este día contigo.
-            <br />
-            <br />
-            Si deseas tener un detalle con nosotros, puedes hacerlo mediante una
-            transferencia bancaria.
-          </p>
-
-          <button
-            type="button"
-            onClick={() => setMostrarModal(true)}
+          {/* Separador */}
+          <div
             className="
-              mt-12
-              bg-[#4A141D]
-              text-[#F4E8DD]
-              px-10
-              py-4
-              rounded-full
-              text-lg
-              shadow-xl
-              hover:scale-105
-              transition
+              my-7 flex items-center
+              justify-center gap-4
             "
           >
-            Ver datos bancarios
-          </button>
-        </div>
-      </motion.div>
-
-      <AnimatePresence>
-        {mostrarModal && (
-          <motion.div
-            className="
-              fixed inset-0
-              bg-black/60
-              backdrop-blur-md
-              flex items-center justify-center
-              z-[9999]
-              px-5
-            "
-            onClick={() => setMostrarModal(false)}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-          >
-            <motion.div
-              onClick={(e) => e.stopPropagation()}
-              initial={{ scale: 0.85, opacity: 0, y: 60 }}
-              animate={{ scale: 1, opacity: 1, y: 0 }}
-              exit={{ scale: 0.85, opacity: 0, y: 60 }}
-              transition={{ duration: 0.35 }}
+            <span
               className="
-                relative
-                w-full
-                max-w-[360px]
-                rounded-[2rem]
-                bg-[#4A141D]
-                text-[#F4E8DD]
-                p-8
-                shadow-[0_30px_80px_rgba(0,0,0,.4)]
+                h-px w-14
+                bg-[#294285]/60
+              "
+            />
+
+            <Heart
+              size={13}
+              fill="#4169E1"
+              className="text-[#4169E1]"
+            />
+
+            <span
+              className="
+                h-px w-14
+                bg-[#294285]/60
+              "
+            />
+          </div>
+
+          {/* Icono de regalo */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.85 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{
+              duration: 0.7,
+              delay: 0.15,
+            }}
+            viewport={{ once: true }}
+            className="
+              mx-auto mb-9
+              flex h-24 w-24
+              items-center justify-center
+              rounded-full
+              border border-[#B7CAE7]
+              bg-[#F6F9FF]
+            "
+          >
+            <Gift
+              size={39}
+              strokeWidth={1.2}
+              className="text-[#294285]"
+            />
+          </motion.div>
+
+          {/* Mensaje principal */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: 0.8,
+              delay: 0.2,
+            }}
+            viewport={{ once: true }}
+          >
+            <h3
+              className="
+                mx-auto max-w-lg
+                font-['Playfair_Display']
+                text-[25px]
+                font-normal
+                leading-[1.5]
+                text-[#111111]
+                sm:text-[32px]
               "
             >
-              <button
-                type="button"
-                onClick={() => setMostrarModal(false)}
-                className="absolute top-4 right-5 text-3xl leading-none"
-              >
-                ×
-              </button>
+              Tu presencia es nuestro
+              <br className="hidden sm:block" />
+              {" "}mejor regalo
+            </h3>
 
-              <h3 className="font-playfair text-3xl">Santander</h3>
+            <p
+              className="
+                mx-auto mt-8
+                max-w-xl
+                font-['Playfair_Display']
+                text-[16px]
+                leading-[2]
+                text-[#333333]
+                sm:text-[18px]
+              "
+            >
+              No contamos con mesa de regalos.
+              Si deseas obsequiarnos algún detalle,
+              será recibido con mucho cariño,
+              pero no es obligatorio.
+            </p>
 
-              <div className="w-12 h-8 rounded bg-[#E6C15B] mt-6"></div>
+            <div
+              className="
+                mx-auto my-9
+                h-px w-20
+                bg-[#B7CAE7]
+              "
+            />
 
-              <p className="tracking-[.18em] text-lg mt-8">
-                1234 5678 9012 3456
-              </p>
-
-              <p className="mt-6 text-sm text-[#F4E8DD]/70">Titular</p>
-
-              <p className="font-playfair">Juan Pérez</p>
-
-              <button
-                type="button"
-                onClick={copiarCuenta}
-                className="
-                  w-full
-                  mt-8
-                  bg-[#F4E8DD]
-                  text-[#4A141D]
-                  py-3
-                  rounded-full
-                  font-semibold
-                "
-              >
-                Copiar número
-              </button>
-
-              {copiado && (
-                <p className="text-center mt-4 text-[#B88A8A]">
-                  Número copiado
-                </p>
-              )}
-            </motion.div>
+            <p
+              className="
+                mx-auto max-w-md
+                font-['Playfair_Display']
+                text-base italic
+                leading-[1.9]
+                text-[#294285]
+                sm:text-lg
+              "
+            >
+              Lo más importante para nosotros
+              es compartir este día tan especial contigo.
+            </p>
           </motion.div>
-        )}
-      </AnimatePresence>
+
+          {/* Detalle final */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{
+              duration: 1,
+              delay: 0.35,
+            }}
+            viewport={{ once: true }}
+            className="
+              mt-12 flex flex-col
+              items-center
+            "
+          >
+            <Sparkles
+              size={20}
+              strokeWidth={1.3}
+              className="mb-5 text-[#4169E1]"
+            />
+
+            <p
+              className="
+                font-['Playfair_Display']
+                text-lg italic
+                text-[#294285]
+                sm:text-xl
+              "
+            >
+              Con amor,
+            </p>
+
+            <p
+              className="
+                mt-2
+                font-['Playfair_Display']
+                text-2xl
+                text-[#111111]
+                sm:text-3xl
+              "
+            >
+              Blanca & Luis
+            </p>
+          </motion.div>
+        </div>
+      </motion.div>
     </section>
   );
 };
