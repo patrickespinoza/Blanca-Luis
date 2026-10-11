@@ -6,6 +6,7 @@ import Dresscode from "./componentes-encabezado/Dresscode";
 import Regalos from "./componentes-encabezado/Regalos";
 import Confirmacion from "./componentes-encabezado/Confirmacion";
 import Musica from "./componentes-encabezado/musica";
+import ImagenFinal from "./componentes-encabezado/imagenfinal";
 
 export default function Intinerario() {
   return (
@@ -26,6 +27,8 @@ export default function Intinerario() {
       <Regalos />
 
       <Confirmacion />
+
+      <ImagenFinal/>
     </div>
   );
 }
